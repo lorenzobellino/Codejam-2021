@@ -18,5 +18,4 @@ for t in range(T):
 
         resp.append(a)
     k = np.stack((resp),axis=1)
-
     print(k)
