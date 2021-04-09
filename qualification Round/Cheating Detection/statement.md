@@ -1,39 +1,23 @@
 # Problem Statement
+100 players are competing in a 10000-question trivia tournament; the players are numbered from 1 to 100. Player i has a skill level of Si and question j has a difficulty level of Qj. Each skill level and each question difficulty are chosen uniformly at random from the range [−3.00,3.00], and independently of all other choices. For example, a player can have a skill level of 2.47853 and a question can have a difficulty level of −1.4172.
 
-Cody-Jamal is working on his latest piece of abstract art: a mural consisting of a row of waning moons and closed umbrellas. Unfortunately, greedy copyright trolls are claiming that waning moons look like an uppercase C and closed umbrellas look like a J, and they have a copyright on CJ and JC. Therefore, for each time CJ appears in the mural, Cody-Jamal must pay X, and for each time JC appears in the mural, he must pay Y.
+When player i tries to answer question j, the probability that they answer it correctly is f(Si−Qj), where f is the sigmoid function:
+f(x)=11+e−x
+where e is Euler's number (approximately 2.718...), the mathematical constant. Notice that 0<f(x)<1 for all x, so f(Si−Qj) is always a valid probability. Each of these answer attempts is chosen at random independently of all other choices.
 
+There is one exception: exactly one of the players is a cheater! The cheater is chosen uniformly at random from among all players, and independently of all other choices. The cheater behaves as follows: before answering each question, they flip a fair coin. If it comes up heads, they do not cheat and the rules work as normal. If it comes up tails, they secretly look up the answer on the Internet and answer the question correctly. Formally, they decide whether to cheat at random with 0.5 probability for each question, independently of all other choices.
 
+The results of a tournament consist of only the per-question results (correct or incorrect) for each player. Apart from the general description above, you do not know anything about the skill levels of the players or the difficulties of the questions.
 
-Cody-Jamal is unwilling to let them compromise his art, so he will not change anything already painted. He decided, however, that the empty spaces he still has could be filled strategically, to minimize the copyright expenses.
-
-For example, if CJ?CC? represents the current state of the mural, with C representing a waning moon, J representing a closed umbrella, and ? representing a space that still needs to be painted with either a waning moon or a closed umbrella, he could finish the mural as CJCCCC, CJCCCJ, CJJCCC, or CJJCCJ. The first and third options would require paying X+Y in copyrights, while the second and fourth would require paying 2⋅X+Y.
-
-Given the costs X and Y and a string representing the current state of the mural, how much does Cody-Jamal need to pay in copyrights if he finishes his mural in a way that minimizes that cost?
+You must correctly identify the cheater in at least P percent of the test cases. That is, you must succeed in at least P⋅T/100 out of T cases.
 
 Input
-The first line of the input gives the number of test cases, T. T lines follow. Each line contains two integers X and Y and a string S representing the two costs and the current state of the mural, respectively.
+The first line of the input gives the number of test cases, T. The second line of the input gives the percentage of test cases, P, that you must answer correctly for your solution to be considered correct. T test cases follow. Each case consists of 100 lines of 10000 characters each. The j-th character on the i-th line is 1 if the i-th player answered the j-th question correctly, or 0 if they answered it incorrectly.
 
 Output
-For each test case, output one line containing Case #x: y, where x is the test case number (starting from 1) and y is the minimum cost that Cody-Jamal needs to pay in copyrights for a finished mural.
+For each test case, output one line containing Case #x: y, where x is the test case number (starting from 1) and y is the number of the cheater (with player numbers starting from 1).
 
 Limits
-Time limit: 10 seconds.
+Time limit: 60 seconds.
 Memory limit: 1 GB.
-1≤T≤100.
-Each character of S is either C, J, or ?.
-
-Test Set 1 (Visible Verdict)
-1≤ the length of S ≤10.
-1≤X≤100.
-1≤Y≤100.
-Test Set 2 (Visible Verdict)
-1≤ the length of S ≤1000.
-1≤X≤100.
-1≤Y≤100.
-Extra credit!
-What if some copyright holders could pay Cody-Jamal for the advertisement instead of being paid? Cody-Jamal getting paid is represented by a negative cost.
-
-Test Set 3 (Hidden Verdict)
-1≤ the length of S ≤1000.
-−100≤X≤100.
-−100≤Y≤100.
+T=50.
