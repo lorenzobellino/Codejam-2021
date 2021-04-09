@@ -1,6 +1,5 @@
 T = int(input())
 P = int(input())
-
 for z in range(T):
     risposte= []
     cazzi = []
