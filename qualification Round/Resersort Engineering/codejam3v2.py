@@ -1,21 +1,13 @@
 def riempiSx(v,jmp,start,end,firstN):
-    # print(start)
-    # print(end)
-    # print(v)
-    # print(jmp)
     if(len(jmp)==0):
         while(start>=end and v[start]==0):
             v[start]=firstN
             firstN+=1
             start-=1
-        # for k in range(start,end-1,-1):
-        #     v[k]=firstN
-        #     firstN+=1
         return
     x = jmp[0]
     jmp = jmp[1:]
     k=start
-    # for k in range(start,end+x-1,-1):
     for k in range(start,end+x,-1):
         v[k] = firstN
         firstN+=1
@@ -23,23 +15,15 @@ def riempiSx(v,jmp,start,end,firstN):
     riempiDx(v,jmp,end+1,start,firstN+1)
 
 def riempiDx(v,jmp,start,end,firstN):
-    # print(start)
-    # print(end)
-    # print(v)
-    # print(jmp)
     if(len(jmp)==0):
         while(start<=end and v[start]==0):
             v[start]=firstN
             firstN+=1
             start+=1
-        # for k in range(start,end+1):
-        #     v[k]=firstN
-        #     firstN+=1
         return
     x = jmp[0]
     jmp = jmp[1:]
     k=start
-    #for k in range(start,end-x+1):
     for k in range(start,end-x):
         v[k] = firstN
         firstN+=1
